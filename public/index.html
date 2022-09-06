@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trabajos</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body id="app" style="background-color: #eee">
+    <div class="container" style="width: 512px; margin-top: 100px">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center">
+            <img
+              class="mb-3"
+              width="100"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Escudo_de_la_Universidad_Central_del_Ecuador.png/200px-Escudo_de_la_Universidad_Central_del_Ecuador.png"
+            />
+            <h3>Universidad Central del Ecuador</h3>
+            <h5>Carrera de petróleos</h5>
+            <p>Facilidades de producción</p>
+          </div>
+          <ul>
+            <li>Mishel Enriquez</li>
+            <li>Marcela Toapanta</li>
+            <li>Henry Vargaz</li>
+            <li>Nathaly Yugcha</li>
+          </ul>
+          <h3>Calculadora petrolera</h3>
+          <form v-on:submit.prevent="enviarFormulario">
+            <div class="mb-3">
+              <label class="form-label">Tipo de conversión</label>
+              <select v-model="data.tipo" class="form-select">
+                <option value="volumen">Volumen</option>
+                <option value="temperatura">Temperatura</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Cantidad</label>
+              <input
+                v-model="data.cantidad"
+                type="number"
+                class="form-control"
+                placeholder="Ingresa la cantidad"
+                required
+                step=".000001"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Unidad actual</label>
+              <select v-model="data.unidad" class="form-select" required>
+                <option v-for="(unidad, key) in unidades" v-bind:value="key">
+                  {{ key }} - {{ unidad }}
+                </option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Convertir a</label>
+              <select
+                v-model="data.convertirUnidad"
+                class="form-select"
+                required
+              >
+                <option v-for="(unidad, key) in unidades" v-bind:value="key">
+                  {{ key }} - {{ unidad }}
+                </option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Calcular</button>
+            <span v-show="resultadoConversion !== ''" class="ms-4">
+              Su total es {{ resultadoConversion }}
+            </span>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
